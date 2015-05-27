@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Ejemplo de ABM con JSF y JPA</title>
+        <link href="css/estilo-plantilla.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h3>#{pC.tituloOpe}</h3>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Id:" for="id" />
+                    <h:inputText id="id" value="#{pC.per.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
+                    <h:outputLabel value="Ape:" for="ape" />
+                    <h:inputText id="ape" value="#{pC.per.ape}" title="Ape" required="true" requiredMessage="The Ape field is required."/>
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText id="nom" value="#{pC.per.nom}" title="Nom" required="true" requiredMessage="The Nom field is required."/>
+                    <h:outputLabel value="Nac:" for="nac" />
+                    <h:inputText p:type="date" id="nac" value="#{pC.per.nac}" title="Nac" required="true" requiredMessage="The Nac field is required.">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandButton value="Guardar" action="#{pC.doGuardar()}"/>
+                &nbsp;
+                <h:commandButton value="Cancelar" immediate="true" action="#{pC.doVerIndex()}"/>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

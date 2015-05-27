@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ejemplo de ABM con JSF y JPA</title>
+        <link href="css/estilo-plantilla.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <f:view>
+
+            <h:form>
+                <h3><h:outputText value="Listado de Personas"/></h3>
+                <h:dataTable value="#{pC.listaPer}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Persona"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ape}, #{item.nom}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nacimiento"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nac}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Edad"/>
+                        </f:facet>
+                        <h:outputText value="#{pC.calcularEdad(item.nac)} años"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Modificar" action="#{pC.doPrepararModificacion(item)}"/>
+                        &nbsp;
+                        <h:commandButton value="Borrar" action="#{pC.doBorrar(item)}"/>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="Nuevo" action="#{pC.doNuevo()}"/>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
