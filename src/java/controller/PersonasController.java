@@ -30,6 +30,8 @@ public class PersonasController {
     //Operacion:
     char ope = '\0';
     private String tituloOpe;
+    
+    private String txtBusqueda;
 
     //Inyectar dependencias a los session bean:
     @EJB
@@ -56,6 +58,22 @@ public class PersonasController {
 
     public void setListaPer(List<Personas> listaPer) {
         this.listaPer = listaPer;
+    }
+    
+    public String getTituloOpe() {
+        return tituloOpe;
+    }
+
+    public void setTituloOpe(String tituloOpe) {
+        this.tituloOpe = tituloOpe;
+    }
+    
+     public String getTxtBusqueda() {
+        return txtBusqueda;
+    }
+
+    public void setTxtBusqueda(String txtBusqueda) {
+        this.txtBusqueda = txtBusqueda;
     }
 
     //Método que se ejecuta después de cargar la página
@@ -126,12 +144,14 @@ public class PersonasController {
         perDao.deletePersona(p);
         return doVolver();
     }
-
-    public String getTituloOpe() {
-        return tituloOpe;
+    
+    //Búsqueda:
+    public String doBuscar(){
+        listaPer = perDao.selectPersonas(txtBusqueda);
+        return "index";
     }
 
-    public void setTituloOpe(String tituloOpe) {
-        this.tituloOpe = tituloOpe;
-    }
+   
+
+    
 }

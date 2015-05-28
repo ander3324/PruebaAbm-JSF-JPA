@@ -27,7 +27,13 @@ public class PersonasDao {
     // "Insert Code > Add Business Method")
     
     public List<Personas> selectPersonas(){
-        Query q = em.createQuery("Select p From Personas p");
+        Query q = em.createQuery("Select p From Personas p ORDER BY p.ape ASC");
+        return q.getResultList();
+    }
+    
+     public List<Personas> selectPersonas(String texto){
+        Query q = em.createQuery("Select p From Personas p Where p.ape LIKE :texto OR p.nom LIKE :texto ORDER BY p.ape ASC");
+        q.setParameter("texto","%" + texto + "%");
         return q.getResultList();
     }
     
